@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avaliação de desempenho e feedback – Material de apoio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--o:#F7931E;--p:#E8336D;--bg:#FFF9F4;--card:#fff;--ink:#2B2230;--mut:#6B5F70;--line:#F3DFCF;--ok:#1F8A5B;--no:#C0392B;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:var(--p)}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+header.hero{background:linear-gradient(135deg,var(--o),var(--p));color:#fff;padding:48px 20px 56px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header .wrap{padding:0}
+.hero h1{font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.2;margin:0 0 10px}
+.hero p{margin:0;max-width:60ch;opacity:.95}
+nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:500;font-size:.9rem;padding:6px 14px;border-radius:99px}
+nav a:hover{background:#FFE9D6}
+nav a.go{background:var(--p);color:#fff}
+section{padding:40px 0 8px}
+h2{font-size:1.6rem;margin:0 0 4px;color:var(--p)}
+h3{font-size:1.1rem;margin:24px 0 8px}
+.sub{color:var(--mut);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
+.key{border-left:5px solid var(--o);background:#FFF1E2;border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+button,select,textarea,input{font:inherit}
+.chip{border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer;font-weight:500}
+.chip:hover{border-color:var(--o)}
+.chip[aria-pressed=true],.chip.on{background:var(--o);border-color:var(--o);color:#fff}
+.step{width:46px;height:46px;border-radius:50%;padding:0;font-weight:700}
+.step[aria-pressed=true]{background:var(--p);border-color:var(--p)}
+.panel{min-height:84px}
+.panel b{color:var(--p)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cols ul{margin:8px 0 0;padding-left:20px;font-size:.92rem}
+.btn{background:var(--p);color:#fff;border:0;border-radius:10px;padding:10px 20px;font-weight:600;cursor:pointer}
+.btn:hover{background:#cf2660}
+.btn.alt{background:#fff;color:var(--p);border:2px solid var(--p)}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--o)}
+.opt.right{border-color:var(--ok);background:#E8F6EF}
+.opt.wrong{border-color:var(--no);background:#FBEAE7}
+.fb{margin:8px 0 0;font-size:.92rem;min-height:1.4em}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+.quiz h3{margin-top:0}
+.cls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.cls strong{flex:1 1 170px}
+.cls .chip{padding:4px 12px;font-size:.85rem}
+.chip.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.chip.bad{background:var(--no);border-color:var(--no);color:#fff}
+.who{display:flex;gap:10px;align-items:center;margin:10px 0}
+label{font-weight:500;font-size:.9rem;display:block;margin:10px 0 4px}
+textarea,input[type=text]{width:100%;border:2px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;color:var(--ink)}
+textarea{min-height:64px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--o)}
+.pt{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;background:#fff}
+.pt .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;border-radius:99px;padding:2px 10px;color:#fff}
+.t1{background:var(--o)}.t2{background:#EE6A4A}.t3{background:var(--p)}
+.who h3{margin:0}
+.dot{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--o),var(--p));color:#fff;display:grid;place-items:center;font-weight:700}
+.rm{background:none;border:0;color:var(--mut);cursor:pointer;float:right;font-size:.85rem}
+footer{padding:36px 20px 48px;text-align:center;color:var(--mut);font-size:.85rem}
+@media print{.noprint{display:none!important}body{background:#fff}.pt{break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero noprint"><div class="wrap">
+<h1>Avaliação de desempenho e feedback</h1>
+<p>Material de apoio das aulas 2, 3 e 4 (Unidade 10, Componente 1 – Conceito e estrutura da avaliação de desempenho). Leia, teste o que aprendeu e monte o seu PDI.</p>
+</div></header>
+<nav class="noprint"><div class="wrap">
+<a href="#aula2">Aula 2 · Critérios e etapas</a>
+<a href="#aula3">Aula 3 · Avaliador e avaliado</a>
+<a href="#aula4">Aula 4 · Desenvolvimento</a>
+<a href="#pdi" class="go">Atividade PDI</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="aula2" class="noprint">
+<h2>Aula 2 · Critérios e etapas do processo avaliativo</h2>
+<p class="sub">Objetivo: identificar os critérios e as fases que estruturam uma avaliação de desempenho.</p>
+<div class="key">A avaliação de desempenho deve ser um processo <b>estruturado, periódico e contínuo</b>. Ela ajuda cada pessoa a enxergar seus pontos a desenvolver e a reforçar seus pontos fortes.</div>
+
+<h3>As 6 etapas do processo</h3>
+<p class="sub">Toque em cada número para ver o que acontece na etapa.</p>
+<div class="row" id="steps" role="group" aria-label="Etapas"></div>
+<div class="card panel" id="stepPanel" aria-live="polite"></div>
+
+<h3>Como avaliar: critérios e escala</h3>
+<p>Em uma avaliação há vários critérios, cada um com uma escala de respostas. O ideal é ter uma referência do nível esperado de cada competência. Os critérios podem ser específicos da empresa e mudar com o tempo, conforme a empresa e seus objetivos evoluem. Os funcionários que mostram em maior grau os critérios valorizados pela organização são os que desempenham melhor, qualquer que seja o cargo.</p>
+
+<h3>Critérios mais comuns</h3>
+<div class="row" id="critTabs" role="group" aria-label="Tipos de critério"></div>
+<div class="card" id="critPanel" aria-live="polite"></div>
+<p class="sub">Fonte: CHIAVENATO, 2014.</p>
+
+<h3>Exercício: classifique o critério</h3>
+<div class="card" id="cls"></div>
+
+<div class="card quiz" id="q2"></div>
+</section>
+
+<section id="aula3" class="noprint">
+<h2>Aula 3 · Papel do avaliador e do avaliado</h2>
+<p class="sub">Objetivo: compreender as funções e responsabilidades no processo de avaliação.</p>
+<div class="key">A avaliação deve mostrar ao colaborador o que as pessoas pensam sobre o seu trabalho e a sua contribuição à organização. Ela vale para qualquer organização, pequena ou grande.</div>
+
+<h3>Modelos de avaliação de competências</h3>
+<p class="sub">A escolha do modelo depende do que a empresa precisa e da sua cultura. Toque para comparar.</p>
+<div class="row" id="models" role="group" aria-label="Modelos"></div>
+<div class="card panel" id="modelPanel" aria-live="polite"></div>
+<p class="sub">Fonte: ROHR, 2023.</p>
+
+<h3>Quem pode avaliar?</h3>
+<div class="row" id="who" role="group" aria-label="Avaliadores"></div>
+<div class="card panel" id="whoPanel" aria-live="polite"></div>
+<p class="sub">Fonte: MARRAS, 2012.</p>
+
+<h3>Caso: o espelho do desempenho</h3>
+<div class="card">
+<p>Um colaborador não entregou um relatório importante e o chefe (avaliador) deu nota zero nesse critério. O colaborador (avaliado) diz que nunca recebeu o login do sistema e, por vergonha de parecer incapaz, não pediu ajuda. O chefe, muito ocupado, também não acompanhou o progresso durante o mês.</p>
+<details><summary>A responsabilidade é 100% do colaborador?</summary><p>Não. Houve falha dos dois lados: a falta de acesso ao sistema era um problema de organização, e ninguém acompanhou o trabalho durante o mês.</p></details>
+<details><summary>O que o avaliador falhou em fazer como líder?</summary><p>Garantir os recursos (o login), acompanhar o progresso e abrir espaço para o colaborador pedir ajuda antes de avaliar.</p></details>
+<details><summary>O que o avaliado falhou em fazer pelo próprio desenvolvimento?</summary><p>Pedir ajuda. A vergonha de parecer incapaz fez o problema crescer em silêncio.</p></details>
+</div>
+<div class="card quiz" id="q3"></div>
+</section>
+
+<section id="aula4" class="noprint">
+<h2>Aula 4 · Avaliação como ferramenta de desenvolvimento</h2>
+<p class="sub">Objetivo: compreender como a avaliação pode orientar ações de melhoria profissional.</p>
+<div class="key">Assim como não se faz prova só para ganhar nota, a avaliação de desempenho <b>não é um fim: é um ponto de partida para o crescimento</b>.</div>
+
+<h3>O que vem depois da nota?</h3>
+<p>A avaliação não termina quando o gestor entrega a nota. É dali que entram as ações de gestão de pessoas:</p>
+<details><summary>Identificação de gaps (lacunas)</summary><p>Perceber o que o colaborador ainda não sabe fazer.</p></details>
+<details><summary>Movimentações de carreira</summary><p>Decidir quem está pronto para uma promoção ou para novos desafios.</p></details>
+<details><summary>Ajustes de recompensa</summary><p>Validar se o desempenho justifica bônus ou méritos.</p></details>
+<details><summary>Melhoria na comunicação</summary><p>Alinhar as expectativas entre o que a empresa quer e o que o funcionário entrega.</p></details>
+
+<h3>Plano de Desenvolvimento Individual (PDI)</h3>
+<p>O desdobramento mais prático para o colaborador é o PDI. Ele responde a três perguntas:</p>
+<div class="cols">
+<div class="card"><b>Onde estou?</b><br>Resultado da avaliação atual.</div>
+<div class="card"><b>Onde quero chegar?</b><br>Objetivo profissional.</div>
+<div class="card"><b>O que preciso fazer?</b><br>Cursos, mentorias e novas tarefas.</div>
+</div>
+<p>O PDI não é estático: ele é revisto ao longo da vida.</p>
+
+<div class="card quiz" id="q4"></div>
+<div class="card"><b>Resumo das três aulas</b>
+<ul>
+<li>O processo de avaliação segue etapas e depende de critérios claros e adequados à organização.</li>
+<li>Todos participam: quem avalia também é avaliado.</li>
+<li>O feedback deve ser específico e construtivo, e pode virar um PDI.</li>
+</ul></div>
+</section>
+
+<section id="pdi">
+<h2>Atividade · Planejando o desenvolvimento (PDI)</h2>
+<p class="sub noprint">Individual. Siga os três passos e, no fim, copie ou imprima o seu plano.</p>
+
+<div class="card noprint"><b>1. Retome</b><br>Releia os pontos de melhoria que você sugeriu para Bia e Léo. Se não tiver mais as anotações, escreva abaixo os pontos que você lembra.</div>
+<div class="card noprint"><b>2. Elabore os PDIs</b><br>Agora você é o mentor da Bia e do Léo. Para cada ponto de melhoria, desenhe três ações práticas:
+<span class="tag t1">Curto prazo: tentar amanhã</span>
+<span class="tag t2">Médio prazo: próximo mês</span>
+<span class="tag t3">Longo prazo: final do ano</span></div>
+
+<div id="chars"></div>
+
+<div class="card" id="share">
+<b>3. Compartilhe</b>
+<p class="noprint" style="margin:4px 0 0">Escolha um dos conselhos que você planejou e conte à turma como essa dica ajudaria a melhorar a convivência no dia a dia.</p>
+<label for="adv">Conselho escolhido</label>
+<textarea id="adv" placeholder="Copie aqui a ação que você escolheu."></textarea>
+<label for="why">Como essa dica ajudaria a melhorar a convivência no dia a dia?</label>
+<textarea id="why"></textarea>
+</div>
+<div class="row noprint">
+<button class="btn" id="copy">Copiar meu PDI</button>
+<button class="btn alt" id="print">Imprimir ou salvar em PDF</button>
+</div>
+<p class="fb noprint" id="copyFb" aria-live="polite"></p>
+</section>
+</main>
+<footer class="noprint">Material de apoio baseado nas aulas ADMANO1C1B4S21A2, A3 e A4 – Educação Profissional Paulista, Técnico em Administração (SEDUC-SP).<br>Referências: Chiavenato (2014); Marras (2012; 2016); Rohr (2023).</footer>
+
+<script>
+const $=(s,e=document)=>e.querySelector(s);
+const h=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+
+/* Grupo de botões que mostra um painel */
+function tabs(rowId,panelId,items,label,fill){
+  const row=$(rowId),panel=$(panelId);
+  items.forEach((it,i)=>{
+    const b=h('button','chip'+(label==='n'?' step':''),label==='n'?String(i+1):it.t);
+    b.type='button';b.setAttribute('aria-pressed','false');
+    b.onclick=()=>{row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');panel.innerHTML='';fill(panel,it,i)};
+    row.appendChild(b);
+  });
+  row.firstChild.click();
+}
+
+/* Aula 2 */
+const etapas=[
+ {t:'Definição de objetivos e critérios',d:'São estabelecidos os objetivos e a periodicidade da avaliação, assim como os critérios, que devem ser claros e mensuráveis.'},
+ {t:'Comunicação e treinamento',d:'Os objetivos e os critérios devem ser comunicados, e o time deve ser treinado nas ferramentas e nos conceitos que usará na avaliação.'},
+ {t:'Coleta de dados',d:'Os colaboradores são avaliados por meio da metodologia escolhida.'},
+ {t:'Análise de dados',d:'Depois da avaliação pelos líderes, os resultados são analisados para identificar padrões de desempenho e oportunidades de melhoria.'},
+ {t:'Feedback',d:'Todos os colaboradores devem receber de seus líderes o resultado da sua avaliação.'},
+ {t:'Plano de melhoria',d:'Líder e colaborador criam um plano para aprimorar o desempenho nos pontos de melhoria ou visando à promoção.'}];
+tabs('#steps','#stepPanel',etapas,'n',(p,it,i)=>{p.innerHTML=`<b>Etapa ${i+1}: ${it.t}</b><p style="margin:6px 0 0">${it.d}</p>`});
+
+const crit={
+ 'Habilidades, capacidades e traços':['Conhecimento do cargo','Conhecimento do negócio','Pontualidade','Assiduidade','Lealdade','Honestidade','Apresentação pessoal','Bom senso','Capacidade de realização','Compreensão de situações','Facilidade de aprender','Atitude pessoal'],
+ 'Comportamentos':['Desempenho da tarefa','Espírito de equipe','Relacionamento humano','Cooperação','Criatividade','Liderança','Hábitos de segurança','Responsabilidade','Atitude e iniciativa','Personalidade','Desembaraço','Prontidão'],
+ 'Metas e resultados':['Quantidade de trabalho','Qualidade do trabalho','Atendimento ao cliente','Satisfação do cliente','Redução de custos','Rapidez nas soluções','Redução de refugos','Ausência de acidentes','Manutenção do equipamento','Atendimento a prazos','Foco em resultados','Aprimoramento técnico']};
+tabs('#critTabs','#critPanel',Object.keys(crit).map(t=>({t})),'x',(p,it)=>{p.innerHTML='<div class="cols"><ul>'+crit[it.t].map(x=>`<li>${x}</li>`).join('')+'</ul></div>'});
+
+const clsItems=[['Pontualidade',0],['Espírito de equipe',1],['Redução de custos',2],['Conhecimento do cargo',0],['Liderança',1],['Satisfação do cliente',2]];
+const clsNames=['Habilidades e traços','Comportamentos','Metas e resultados'];
+clsItems.forEach(([n,ans])=>{
+  const r=h('div','cls');r.appendChild(h('strong','',n));
+  clsNames.forEach((c,i)=>{const b=h('button','chip',c);b.type='button';
+    b.onclick=()=>{r.querySelectorAll('button').forEach(x=>x.classList.remove('ok','bad'));b.classList.add(i===ans?'ok':'bad')};
+    r.appendChild(b)});
+  $('#cls').appendChild(r);
+});
+
+/* Aula 3 */
+const modelos=[
+ {t:'Autoavaliação',d:'O próprio colaborador é o principal foco: ele avalia seus conhecimentos, habilidades e competências.'},
+ {t:'Avaliação 90°',d:'Apenas o líder direto avalia as competências do colaborador, com base em suas observações e interações diretas.'},
+ {t:'Avaliação 180°',d:'O colaborador e seu líder direto analisam juntos o conjunto de atitudes.'},
+ {t:'Avaliação 360°',d:'Modelo bem completo, pois inclui o feedback de várias pessoas diferentes, como líderes e colegas de trabalho.'}];
+tabs('#models','#modelPanel',modelos,'x',(p,it)=>{p.innerHTML=`<b>${it.t}</b><p style="margin:6px 0 0">${it.d}</p>`});
+const quem=[
+ {t:'Superior imediato',d:'O líder avalia o desempenho do colaborador, com assessoria da área de gestão de pessoas, que estabelece os meios e os critérios da avaliação.'},
+ {t:'Avaliado (autoavaliação)',d:'Cada pessoa se avalia constantemente quanto à performance, eficiência e eficácia, com base em parâmetros fornecidos pelo superior ou pela tarefa.'},
+ {t:'Pares e parceiros',d:'A equipe de trabalho avalia o próprio desempenho como um todo e o de cada um de seus membros.'},
+ {t:'Subordinados',d:'Também chamada de avaliação “para cima”, porque o avaliador é o liderado do avaliado.'},
+ {t:'Clientes',d:'Clientes externos avaliam o desempenho em funções como vendas, compras e serviços prestados a terceiros.'},
+ {t:'Fornecedores',d:'Quem fornece matérias-primas, produtos ou serviços mantém contato frequente com os colaboradores e também contribui com a avaliação.'}];
+tabs('#who','#whoPanel',quem,'x',(p,it)=>{p.innerHTML=`<b>${it.t}</b><p style="margin:6px 0 0">${it.d}</p>`});
+
+/* Quizzes */
+function quiz(id,q,opts,right,why){
+  const box=$(id);box.appendChild(h('h3','','Pause e responda: '+q));
+  const fb=h('p','fb');fb.setAttribute('aria-live','polite');
+  opts.forEach((o,i)=>{const b=h('button','opt',o);b.type='button';
+    b.onclick=()=>{box.querySelectorAll('.opt').forEach(x=>x.classList.remove('wrong'));
+      if(i===right){b.classList.add('right');fb.textContent='Correto! '+why;fb.style.color='var(--ok)'}
+      else{b.classList.add('wrong');fb.textContent='Ainda não. Tente outra alternativa.';fb.style.color='var(--no)'}};
+    box.appendChild(b)});
+  box.appendChild(fb);
+}
+quiz('#q2','qual o principal objetivo de uma avaliação de desempenho?',['Punir comportamentos fora do esperado.','Promover a equipe.','Registrar as ações dos funcionários.','Medir o desempenho e agir pelos resultados.'],3,'A avaliação mede o desempenho para orientar ações a partir dos resultados.');
+quiz('#q3','quem pode participar de uma avaliação de desempenho?',['O departamento de RH.','Somente os clientes devem avaliar.','Todos os funcionários avaliam e são avaliados.','Somente os líderes de uma empresa.'],2,'Há vários papéis e eles se alternam: quem avalia também é avaliado.');
+quiz('#q4','por que a avaliação de desempenho é importante para os funcionários?',['Por destacar as falhas.','Por identificar áreas de melhoria.','Para causar boa impressão.','Para cumprir uma burocracia.'],1,'Ao mostrar onde melhorar, ela vira ponto de partida para o crescimento.');
+
+/* Atividade PDI */
+let uid=0;
+function addPoint(box,name){
+  const n=++uid;const p=h('div','pt');
+  p.innerHTML=`<button type="button" class="rm noprint">Remover ponto</button>
+  <label for="pt${n}">Ponto de melhoria</label>
+  <input type="text" id="pt${n}" data-k="ponto" placeholder="Ex.: pedir ajuda quando travar numa tarefa">
+  <div class="grid">
+   <div><label for="a${n}"><span class="tag t1">Curto prazo</span> Tentar amanhã</label><textarea id="a${n}" data-k="amanhã"></textarea></div>
+   <div><label for="b${n}"><span class="tag t2">Médio prazo</span> Próximo mês</label><textarea id="b${n}" data-k="próximo mês"></textarea></div>
+   <div><label for="c${n}"><span class="tag t3">Longo prazo</span> Final do ano</label><textarea id="c${n}" data-k="final do ano"></textarea></div>
+  </div>`;
+  p.querySelector('.rm').onclick=()=>p.remove();
+  box.appendChild(p);
+}
+['Bia','Léo'].forEach(name=>{
+  const sec=h('div','');sec.dataset.name=name;
+  const w=h('div','who');w.appendChild(h('div','dot',name[0]));w.appendChild(h('h3','',name));sec.appendChild(w);
+  const list=h('div','');sec.appendChild(list);
+  const add=h('button','btn alt noprint','Adicionar ponto de melhoria de '+name);add.type='button';
+  add.onclick=()=>addPoint(list,name);sec.appendChild(add);
+  addPoint(list,name);$('#chars').appendChild(sec);
+});
+
+function buildText(){
+  let t='MEU PDI – MENTORIA DE BIA E LÉO\n';
+  document.querySelectorAll('#chars > div').forEach(sec=>{
+    t+='\n'+sec.dataset.name.toUpperCase()+'\n';
+    sec.querySelectorAll('.pt').forEach((p,i)=>{
+      const v=k=>(p.querySelector(`[data-k="${k}"]`).value||'').trim()||'(em branco)';
+      t+=`Ponto ${i+1}: ${v('ponto')}\n - Amanhã: ${v('amanhã')}\n - Próximo mês: ${v('próximo mês')}\n - Final do ano: ${v('final do ano')}\n`;
+    });
+  });
+  t+='\nCONSELHO QUE VOU COMPARTILHAR\n'+($('#adv').value.trim()||'(em branco)')+'\nComo ajudaria a convivência: '+($('#why').value.trim()||'(em branco)')+'\n';
+  return t;
+}
+$('#copy').onclick=async()=>{
+  const fb=$('#copyFb');
+  try{await navigator.clipboard.writeText(buildText());fb.textContent='PDI copiado. Cole no seu caderno digital ou envie ao professor.';fb.style.color='var(--ok)'}
+  catch(e){fb.textContent='Não foi possível copiar. Use “Imprimir ou salvar em PDF”.';fb.style.color='var(--no)'}
+};
+$('#print').onclick=()=>window.print();
+</script>
+</body>
+</html>
